@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="movie"
+            type="com.tut.moviemvvm.datasource.local.entity.Movie" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#373737">
+        >
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@{movie.title}"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/score"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:fontFamily="sans-serif-condensed-medium"
+            tools:text="This is the movie name" />
+
+
+        <ImageView
+            android:id="@+id/likeBtn"
+            android:layout_width="@dimen/fav_small"
+            android:layout_height="@dimen/fav_small"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="7dp"
+            android:clickable="true"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/score"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/score"
+            app:srcCompat="@drawable/ic_favorite_border_24" />
+
+        <ImageView
+            android:id="@+id/favIcon"
+            android:layout_width="@dimen/fav_small"
+            android:layout_height="@dimen/fav_small"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="7dp"
+            android:tint="@color/white"
+            android:clickable="false"
+            android:visibility="@{movie.liked ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/score"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/score"
+            app:srcCompat="@drawable/ic_favorite_24" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:movieUrl="@{movie.posterPath}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{String.valueOf(movie.popularity)}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="8.5"
+            tools:textSize="30sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
